@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Update User</title>
+    </head>
+    <body>
+        <input value="-1"><label>Not Set</label>
+		{{$selected := .User.Selected_song}}
+		{{range $song := .Songs}}
+		    {{if eq $selected $song.Id}}
+		    <input value="{{$song.Id}}"><label>{{$song.Song_name}} Slected</label>
+		    {{else}}
+		    <input value="{{$song.Id}}"><label>{{$song.Song_name}}</label>
+		    {{end}}
+		{{end}}
+    </body>
+</html>

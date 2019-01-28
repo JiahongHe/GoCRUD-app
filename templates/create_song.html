@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create</title>
+    </head>
+    <body>
+        <h>Create a new song!</h>
+        <form action="/create_song" method="POST" name="form">
+            <label>Song Name</label>
+            <input type="text" name="song_name">
+            <br>
+            <label>File Path</label>
+            <input type="text" name="file_path">
+            <br>
+            <button onclick="submitForm(this)">Create!</button>
+            <button onclick="goBack(this)">Back</button>
+        </form>
+        <script type="text/javascript">
+            function submitForm(t) {
+                var form = document.getElementByID("form");
+                var in1 = form.cells[1].value
+                var in2 = form.cells[4].value
+                
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Update User</title>
+    </head>
+    <body>
+        <h>Update a user!</h>
+        <form action="/update_user" method="POST">
+            <label>User Id</label>
+            <input type="number" name="id" value="{{.User.Id}}" readonly>
+            <br>
+            <label>First Name</label>
+            <input type="text" name="first_name" value="{{.User.First_name}}">
+            <br>
+            <label>Last Name</label>
+            <input type="text" name="last_name" value="{{.User.Last_name}}">
+            <br>
+            <label>Selected Song</label>
+            <select name="selected_song">
+                <option value="-1">Not Set</option>
+                {{$selected := .User.Selected_song}}
+                {{range $song := .Songs}}
+                    {{if eq $selected $song.Id}}
+                    <option value="{{$song.Id}}" selected="selected">{{$song.Song_name}}</option>
+                    {{else}}
+                    <option value="{{$song.Id}}">{{$song.Song_name}}</option>
+                    {{end}}
+                {{end}}
+            </select>
+            <br>
+            <button type="submit">Update!</button>
+        </form>
+    </body>
+</html>

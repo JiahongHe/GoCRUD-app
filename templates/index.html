@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Song_Name</th>
+                <th>File_Path</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{range $song := .Songs}}
+            <tr>
+                <td>{{.Id}}</td>
+                <td>{{.Song_name}}</td>
+                <td>{{.File_path}}</td>
+                <td>
+                    <button onclick="update(this, 'song')">update</button>
+                    <button onclick="myDelete(this, 'song')">delete</button>
+                </td>
+            </tr>
+            {{end}}
+        </tbody>
+    </table>
+    <button onclick="toAddPage(this, 'song')">Add</button>
+    <br>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>First_Name</th>
+                <th>Last_Name</th>
+                <th>Selected_Song</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{range $user := .Users}}
+            <tr>
+                <td>{{.Id}}</td>
+                <td>{{.First_name}}</td>
+                <td>{{.Last_name}}</td>
+                <td>{{.Song_name}}</td>
+                <td>
+                    <button onclick="update(this, 'user')">update</button>
+                    <button onclick="myDelete(this, 'user')">delete</button>
+                </td>
+            </tr>
+            {{end}}
+        </tbody>
+    </table>
+    <button onclick="toAddPage(this, 'user')">Add</button>
+    <br>
+    <script>
+        function toAddPage(t, to) {
+            window.open('/create/'+to, "_self")
+        }
+
+        function update(t, toUpdate) {
+            var id = t.parentNode.parentNode.cells[0].innerHTML;
+            var form = document.createElement("form");
+            form.setAttribute("method", "GET");
+            form.setAttribute("action", "/update/"+toUpdate);
+
+            var i = document.createElement("input");
+            i.setAttribute("name", "id");
+            i.setAttribute("value", id);
+
+            form.appendChild(i);
+
+            document.body.appendChild(form)
+            form.submit();
+        }
+
+        function myDelete(t, toDelete) {
+            var id = t.parentNode.parentNode.cells[0].innerHTML;
+            var form = document.createElement("form");
+            form.setAttribute("method", "POST");
+            form.setAttribute("action", "/delete");
+
+            var i1 = document.createElement("input");
+            i1.setAttribute("name", "id");
+            i1.setAttribute("value", id);
+
+            var i2 = document.createElement("input");
+            i2.setAttribute("name", "type");
+            i2.setAttribute("value", toDelete);
+
+            form.appendChild(i1);
+            form.appendChild(i2)
+
+            document.body.appendChild(form)
+            form.submit();
+        }
+    </script>
+</body>
+</html>

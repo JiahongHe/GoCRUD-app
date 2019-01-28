@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create</title>
+    </head>
+    <body>
+        <h>Update a song!</h>
+        <form action="/update_song" method="POST">
+            <label>Song id</label>
+            <input type="number" name="id" value="{{.Id}}" readonly>
+            <br>
+            <label>Song Name</label>
+            <input type="text" name="song_name" value="{{.Song_name}}">
+            <br>
+            <label>File Path</label>
+            <input type="text" name="file_path" value="{{.File_path}}">
+            <br>
+            <button type="submit">Update!</button>
+        </form>
+    </body>
+</html>
